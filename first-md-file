@@ -1,0 +1,111 @@
+PPC Getting Started Guide
+
+Prerequisites:
+
+1. Q-account in the peas.publix.com domain.
+
+![](RackMultipart20220505-1-7gwqlr_html_8c4f89118f256ab1.png)
+
+1. Q-account access into the peas.publix.com domain VMware environment(s).
+
+Logging in:
+
+1. Log into Cyber-Ark.
+2. Make note of your peas.publix.com domain q-account password (this will be needed later).
+3. Click on the &quot;Action menu&quot; icon then select &quot;Connect with&quot; in drop down then select &quot;RDP&quot;.
+4. In the &quot;Connect with Account&quot; window enter one of the following jump servers in the &quot;Remote Machine:&quot; field and click &quot;OK&quot;.
+  1. A46PRDSHPEASA01.PEAS.PUBLIX.COM
+  2. L17PRDSHPEASA01.PEAS.PUBLIX.COM
+5. The following warning box may pop up. Click &quot;Yes&quot; to continue.
+
+![](RackMultipart20220505-1-7gwqlr_html_77f10edfc09a7a67.png)
+
+1. Once logged in open a web browser.
+2. Go to the following URL:
+  1. [https://pvavra01.publix.com/](https://pvavra01.publix.com/)
+3. Click on the &quot;GO TO LOGIN PAGE&quot; button
+4. Login with your peas.publix.com domain q-account and password obtained in step 2.
+5. The page should look similar to the following but may differ slightly depending on permissions.
+
+![](RackMultipart20220505-1-7gwqlr_html_b4875fd82eba306.png)
+
+Building a system:
+
+1. In the &quot;Services&quot; tab click on &quot;Service Broker&quot;.
+
+![](RackMultipart20220505-1-7gwqlr_html_608c8b50065cb072.png)
+
+1. In the &quot;Catalog&quot; tab click on the &quot;REQUEST&quot; link in the &quot;Linux 1 group&quot; Catalog Items.
+
+![](RackMultipart20220505-1-7gwqlr_html_e4957ac861efddc2.png)
+
+1. Populate the following fields in the General tab:
+  1. Deployment Name: This an arbitrary but is required to maintain the build.
+  2. Project: For the purposes of a Unix team system build use one of the following.
+    1. system engineering non-production
+    2. system engineering production
+  3. systemid: This is specified in the TDD.
+  4. Description: This populates the Description field in the CMDB
+  5. Lifecycle: One of the following. This is specified in the TDD.
+    1. development
+    2. test
+    3. staging
+    4. production
+  6. AD domain: corp.ad.publix.com should be used but other domains may be developed in the future.
+  7. Additional IPs to reserve: This field is used for addition IP if required. For Example: Needed for additional virtual NIC&#39;s.
+
+Note: Don&#39;t click on the &quot;Submit&quot; button yet.
+
+![](RackMultipart20220505-1-7gwqlr_html_4e999527de044739.png)
+
+1. Go to the &quot;Server Group 1&quot; tab
+
+![](RackMultipart20220505-1-7gwqlr_html_8cd83eea7371634.png)
+
+1. Populate the following fields in the &quot;Server Group 1&quot; tab:
+  1. Server nameroot Server Group s1: This nameroot will be specified in the TDD. Note: Other letters/numbers get added to this name for a final unique actual hostname.
+  2. Server Size (Group 1): This is the standard server sizes as far as CPU and memory. The follow are the options with the corresponding CPU and memory sizes. This is specified in the TDD.
+    1. entry-2: 2 cpu(s), 4Gb memory
+    2. entry-4: 4 cpu(s), 8Gb memory
+    3. entry-8: 8 cpu(s), 16Gb memory
+    4. entry-16: 16 cpu(s), 32Gb memory
+    5. highcpu-2: 2 cpu(s), 2Gb memory
+    6. highcpu-4: 4 cpu(s), 4Gb memory
+    7. highcpu-8: 8 cpu(s), 8Gb memory
+    8. highcpu-16: 16 cpu(s), 16Gb memory
+    9. highmem-2: 2 cpu(s), 16Gb memory
+    10. highmem-4: 4 cpu(s), 32Gb memory
+    11. highmem-8: 8 cpu(s), 64Gb memory
+    12. highmem-16: 16 cpu(s), 128Gb memory
+    13. standard-2: 2 cpu(s), 8Gb memory
+    14. standard-4: 4 cpu(s), 16Gb memory
+    15. standard-8: 8 cpu(s), 32Gb memory
+    16. standard-16: 16 cpu(s), 64Gb memory
+  3. Server Operating System (Group 1): This is specified in the TDD
+    1. Red Hat 7
+    2. Red Hat 8
+  4. Server Type (Group 1): This is specified in the TDD
+    1. Appl Server
+    2. Core Server
+    3. Database Server
+    4. Print Server
+    5. Server
+    6. Web Server
+  5. Number of VMs (Group 1): The number of servers you want built. This is specified in the TDD. Note: These are all identical system based on the criteria from the input above.
+
+![](RackMultipart20220505-1-7gwqlr_html_e65750735799b653.png)
+
+1. Click the &quot;Submit&quot; button to begin build.
+
+Verification and Post build:
+
+Much of the build takes place in prd tower. To watch and/or troubleshoot build failures login to pansia10 (PRD Tower) for details of the builds.
+
+1. https://pansia10.publix.com/#/login/
+
+To access the newly built server(s):
+
+1. While logged into the jump server open a web browser
+2. Go to the peas.publix.com VMware environments at the following URLs:
+  1. [https://l17pnpwvca01.peas.publix.com/](https://l17pnpwvca01.peas.publix.com/)for non-prod
+  2. [https://a46pwvca01.peas.publix.com/](https://a46pwvca01.peas.publix.com/)for prod
